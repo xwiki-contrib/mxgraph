@@ -95,6 +95,9 @@
                   <includes>
                     <include>js/Graph.js</include>
                     <include>js/Shapes.js</include>
+                    <include>js/Editor.js</include>
+                    <include>js/EditorUi.js</include>
+                    <include>js/Actions.js</include>
                   </includes>
                 </aggregation>
               </aggregations>
