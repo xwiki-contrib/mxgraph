@@ -32,7 +32,7 @@
   <artifactId>mxgraph</artifactId>
   <packaging>pom</packaging>
   <name>mxGraph Parent POM</name>
-  <version>4.0.4-SNAPSHOT</version>
+  <version>4.0.4_11.2.8-SNAPSHOT</version>
   <description>Provides WebJar packaging for the mxGraph JavaScript diagramming library.</description>
   <developers>
     <developer>
@@ -47,9 +47,9 @@
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <mxgraph.version>4.0.4</mxgraph.version>
+    <diagramly.version>11_2_8</diagramly.version>
     <!-- The path to the folder where we unpack the mxGraph sources. -->
-    <mxgraph.path>${project.build.directory}/mxgraph-${mxgraph.version}</mxgraph.path>
+    <mxgraph.path>${project.build.directory}/mxgraph2-diagramly-${diagramly.version}</mxgraph.path>
     <!-- Follow the specifications regarding the WebJar content path. -->
     <webjar.contentDirectory>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</webjar.contentDirectory>
   </properties>
@@ -70,7 +70,7 @@
                 <goal>wget</goal>
               </goals>
               <configuration>
-                <url>https://github.com/jgraph/mxgraph/archive/v${mxgraph.version}.zip</url>
+                <url>https://github.com/jgraph/mxgraph2/archive/diagramly-${diagramly.version}.zip</url>
                 <unpack>true</unpack>
               </configuration>
             </execution>
