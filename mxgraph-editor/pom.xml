@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>mxgraph</artifactId>
-    <version>4.0.4_11.2.8-SNAPSHOT</version>
+    <version>4.0.4_11.2.9-SNAPSHOT</version>
   </parent>
   <packaging>jar</packaging>
   <artifactId>mxgraph-editor</artifactId>
@@ -165,6 +165,10 @@
               <resources>
                 <resource>
                   <directory>${mxgraph.path}/javascript/examples/grapheditor/www</directory>
+                  <excludes>
+                    <exclude>**/**/*.html</exclude>
+                    <exclude>styles/help.css</exclude>
+                  </excludes>
                 </resource>
               </resources>
             </configuration>
