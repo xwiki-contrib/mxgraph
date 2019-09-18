@@ -27,12 +27,12 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>parent-commons</artifactId>
-    <version>8.4-7</version>
+    <version>11.3.4</version>
   </parent>
   <artifactId>mxgraph</artifactId>
   <packaging>pom</packaging>
   <name>mxGraph Parent POM</name>
-  <version>3.9.9-SNAPSHOT</version>
+  <version>4.0.4-SNAPSHOT</version>
   <description>Provides WebJar packaging for the mxGraph JavaScript diagramming library.</description>
   <developers>
     <developer>
@@ -47,7 +47,7 @@
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <mxgraph.version>3.9.8</mxgraph.version>
+    <mxgraph.version>4.0.4</mxgraph.version>
     <!-- The path to the folder where we unpack the mxGraph sources. -->
     <mxgraph.path>${project.build.directory}/mxgraph-${mxgraph.version}</mxgraph.path>
     <!-- Follow the specifications regarding the WebJar content path. -->
@@ -59,7 +59,7 @@
         <plugin>
           <groupId>com.googlecode.maven-download-plugin</groupId>
           <artifactId>download-maven-plugin</artifactId>
-          <version>1.3.0</version>
+          <version>1.4.2</version>
           <executions>
             <!-- Download the mxGraph sources for the version (tag) we want to use. -->
             <execution>
