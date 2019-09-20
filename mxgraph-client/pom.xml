@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>mxgraph</artifactId>
-    <version>4.0.4_11.2.9-SNAPSHOT</version>
+    <version>4.0.4_11.2.9</version>
   </parent>
   <packaging>jar</packaging>
   <artifactId>mxgraph-client</artifactId>
@@ -261,7 +261,7 @@
             <replacement>
               <!-- Remove the includes because we bundled all the mxClient code. -->
               <token>\bmxClient\.include\(.+?\);?</token>
-              <value></value>
+              <value />
             </replacement>
             <replacement>
               <!-- Set the mxClient version. -->
