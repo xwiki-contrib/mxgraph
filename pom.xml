@@ -32,7 +32,7 @@
   <artifactId>mxgraph</artifactId>
   <packaging>pom</packaging>
   <name>mxGraph Parent POM</name>
-  <version>4.0.4_11.2.9</version>
+  <version>4.0.4_11.2.9-1-SNAPSHOT</version>
   <description>Provides WebJar packaging for the mxGraph JavaScript diagramming library.</description>
   <developers>
     <developer>
@@ -44,7 +44,7 @@
     <connection>scm:git:git://github.com/xwiki-contrib/mxgraph.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/mxgraph.git</developerConnection>
     <url>https://github.com/xwiki-contrib/mxgraph/tree/master</url>
-    <tag>mxgraph-4.0.4_11.2.9</tag>
+    <tag>HEAD</tag>
   </scm>
   <properties>
     <diagramly.version>11_2_9</diagramly.version>
