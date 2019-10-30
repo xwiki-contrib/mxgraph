@@ -33,8 +33,9 @@
   <packaging>pom</packaging>
   <name>mxGraph Parent POM</name>
   <version>4.0.5_12.1.8-1-SNAPSHOT</version>
-  <description>Provides WebJar packaging for the mxGraph JavaScript diagramming library.</description>
+  <description>Provides packaging for the mxGraph diagramming library.</description>
   <developers>
+    <!-- Only for the packaging. The mxGraph code is developed by JGraph Ltd. -->
     <developer>
       <id>mflorea</id>
       <name>Marius Dumitru Florea</name>
