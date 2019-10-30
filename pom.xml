@@ -55,6 +55,8 @@
     <mxgraph.path>${project.build.directory}/mxgraph-${mxgraph.version}</mxgraph.path>
     <!-- Follow the specifications regarding the WebJar content path. -->
     <webjar.contentDirectory>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</webjar.contentDirectory>
+    <!-- No Java code here -->
+    <xwiki.revapi.skip>true</xwiki.revapi.skip>
   </properties>
   <build>
     <pluginManagement>
