@@ -118,6 +118,7 @@
   </build>
   <modules>
     <module>mxgraph-client</module>
+    <module>mxgraph-core</module>
     <module>mxgraph-editor</module>
   </modules>
 </project>
