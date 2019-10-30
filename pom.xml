@@ -32,7 +32,7 @@
   <artifactId>mxgraph</artifactId>
   <packaging>pom</packaging>
   <name>mxGraph Parent POM</name>
-  <version>4.0.4_12.0.0-1-SNAPSHOT</version>
+  <version>4.0.5-SNAPSHOT</version>
   <description>Provides WebJar packaging for the mxGraph JavaScript diagramming library.</description>
   <developers>
     <developer>
@@ -47,9 +47,11 @@
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <diagramly.version>12_0_0</diagramly.version>
+    <mxgraph.version>4.0.5</mxgraph.version>
+    <!-- The URL from where to download the mxGraph sources. -->
+    <mxgraph.url>https://github.com/jgraph/mxgraph/archive/v${mxgraph.version}.zip</mxgraph.url>
     <!-- The path to the folder where we unpack the mxGraph sources. -->
-    <mxgraph.path>${project.build.directory}/mxgraph2-diagramly-${diagramly.version}</mxgraph.path>
+    <mxgraph.path>${project.build.directory}/mxgraph-${mxgraph.version}</mxgraph.path>
     <!-- Follow the specifications regarding the WebJar content path. -->
     <webjar.contentDirectory>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</webjar.contentDirectory>
   </properties>
@@ -70,7 +72,7 @@
                 <goal>wget</goal>
               </goals>
               <configuration>
-                <url>https://github.com/jgraph/mxgraph2/archive/diagramly-${diagramly.version}.zip</url>
+                <url>${mxgraph.url}</url>
                 <unpack>true</unpack>
               </configuration>
             </execution>
@@ -121,4 +123,16 @@
     <module>mxgraph-core</module>
     <module>mxgraph-editor</module>
   </modules>
+  <profiles>
+    <profile>
+      <id>diagramly</id>
+      <properties>
+        <diagramly.version>12_1_8</diagramly.version>
+        <!-- The URL from where to download the diagramly sources. -->
+        <mxgraph.url>https://github.com/jgraph/mxgraph2/archive/diagramly-${diagramly.version}.zip</mxgraph.url>
+        <!-- The path to the folder where we unpack the diagramly sources. -->
+        <mxgraph.path>${project.build.directory}/mxgraph2-diagramly-${diagramly.version}</mxgraph.path>
+      </properties>
+    </profile>
+  </profiles>
 </project>
