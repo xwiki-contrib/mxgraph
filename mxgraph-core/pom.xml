@@ -66,6 +66,7 @@
         <artifactId>build-helper-maven-plugin</artifactId>
         <executions>
           <execution>
+            <id>add-mxgraph-sources</id>
             <phase>generate-sources</phase>
             <goals>
               <goal>add-source</goal>
@@ -74,6 +75,23 @@
               <sources>
                 <source>${mxgraph.path}/java/src</source>
               </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>add-mxgraph-resources</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>add-resource</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${mxgraph.path}/java/src</directory>
+                  <excludes>
+                    <exclude>**/*.java</exclude>
+                  </excludes>
+                </resource>
+              </resources>
             </configuration>
           </execution>
         </executions>
