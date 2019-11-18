@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>mxgraph</artifactId>
-    <version>4.0.6_12.2.4-SNAPSHOT</version>
+    <version>4.0.6_12.2.4</version>
   </parent>
   <packaging>jar</packaging>
   <artifactId>mxgraph-core</artifactId>
