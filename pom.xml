@@ -32,7 +32,7 @@
   <artifactId>mxgraph</artifactId>
   <packaging>pom</packaging>
   <name>mxGraph Parent POM</name>
-  <version>4.0.6_12.3.3-1-SNAPSHOT</version>
+  <version>4.0.6_12.3.3-1</version>
   <description>Provides packaging for the mxGraph diagramming library.</description>
   <developers>
     <!-- Only for the packaging. The mxGraph code is developed by JGraph Ltd. -->
@@ -45,7 +45,7 @@
     <connection>scm:git:git://github.com/xwiki-contrib/mxgraph.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/mxgraph.git</developerConnection>
     <url>https://github.com/xwiki-contrib/mxgraph/tree/master</url>
-    <tag>HEAD</tag>
+    <tag>mxgraph-4.0.6_12.3.3-1</tag>
   </scm>
   <properties>
     <mxgraph.version>4.0.6</mxgraph.version>
