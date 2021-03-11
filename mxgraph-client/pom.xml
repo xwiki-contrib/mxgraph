@@ -76,7 +76,7 @@
           <execution>
             <id>default-minify-1</id>
             <configuration>
-              <targetDir>${project.version}/js</targetDir>
+              <targetDir>${project.version}</targetDir>
               <outputFilename>mxClient.bundle.min.js</outputFilename>
               <lineSeparator>\n</lineSeparator>
               <includes>
@@ -222,6 +222,12 @@
                 <include>js/io/mxDefaultPopupMenuCodec.js</include>
                 <include>js/io/mxEditorCodec.js</include>
               </includes>
+              <!-- Skip these since it's not out code. -->
+              <closureStrictModeInput>false</closureStrictModeInput>
+              <closureEmitUseStrict>false</closureEmitUseStrict>
+              <closureWarningLevels>
+                <es5Strict>WARNING</es5Strict>
+              </closureWarningLevels>
             </configuration>
           </execution>
         </executions>
