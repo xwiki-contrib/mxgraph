@@ -85,6 +85,7 @@
         <groupId>com.github.blutorange</groupId>
         <artifactId>closure-compiler-maven-plugin</artifactId>
         <executions>
+          <!-- Override the default WebJar JavaScript aggregation step. -->
           <execution>
             <id>default-minify-1</id>
             <configuration>
@@ -93,7 +94,7 @@
               <lineSeparator>\n</lineSeparator>
               <includes>js/*.min.js</includes>
               <excludes>js/Init.min.js</excludes>
-              <!-- Skip these since it's not out code. -->
+              <!-- Skip these since it's not our code. -->
               <closureStrictModeInput>false</closureStrictModeInput>
               <closureEmitUseStrict>false</closureEmitUseStrict>
               <closureWarningLevels>
@@ -127,7 +128,7 @@
                 <include>js/EditorUi.js</include>
                 <include>js/Actions.js</include>
               </includes>
-              <!-- Skip these since it's not out code. -->
+              <!-- Skip these since it's not our code. -->
               <closureStrictModeInput>false</closureStrictModeInput>
               <closureEmitUseStrict>false</closureEmitUseStrict>
               <closureWarningLevels>
