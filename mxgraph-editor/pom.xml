@@ -92,8 +92,11 @@
               <targetDir>${project.version}</targetDir>
               <outputFilename>mxGraphEditor.min.js</outputFilename>
               <lineSeparator>\n</lineSeparator>
-              <includes>js/*.min.js</includes>
-              <excludes>js/Init.min.js</excludes>
+              <includes>js/*.js</includes>
+              <excludes>
+                <exclude>js/Init.js</exclude>
+                <exclude>js/*.min.js</exclude>
+              </excludes>
               <!-- Skip these since it's not our code. -->
               <closureStrictModeInput>false</closureStrictModeInput>
               <closureEmitUseStrict>false</closureEmitUseStrict>
@@ -110,7 +113,7 @@
             </goals>
             <configuration>
               <baseSourceDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}</baseSourceDir>
-              <sourceDir>${project.version}</sourceDir>
+              <sourceDir>${project.version}/js</sourceDir>
               <baseTargetDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}</baseTargetDir>
               <targetDir>${project.version}</targetDir>
               <skipMerge>false</skipMerge>
@@ -122,11 +125,11 @@
               <outputFilename>mxGraphViewer.min.js</outputFilename>
               <lineSeparator>\n</lineSeparator>
               <includes>
-                <include>js/Graph.js</include>
-                <include>js/Shapes.js</include>
-                <include>js/Editor.js</include>
-                <include>js/EditorUi.js</include>
-                <include>js/Actions.js</include>
+                <include>Graph.js</include>
+                <include>Shapes.js</include>
+                <include>Editor.js</include>
+                <include>EditorUi.js</include>
+                <include>Actions.js</include>
               </includes>
               <!-- Skip these since it's not our code. -->
               <closureStrictModeInput>false</closureStrictModeInput>
