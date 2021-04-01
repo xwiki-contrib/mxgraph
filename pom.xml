@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
- *
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
  *
@@ -19,20 +18,19 @@
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
- *
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.xwiki.contrib</groupId>
-    <artifactId>parent-commons</artifactId>
-    <version>11.3.4</version>
+    <artifactId>parent-platform</artifactId>
+    <version>12.10.4</version>
   </parent>
   <artifactId>mxgraph</artifactId>
   <packaging>pom</packaging>
   <name>mxGraph Parent POM</name>
-  <version>4.0.6_12.3.3-2-SNAPSHOT</version>
+  <version>4.2.2_14.4.3-SNAPSHOT</version>
   <description>Provides packaging for the mxGraph diagramming library.</description>
   <developers>
     <!-- Only for the packaging. The mxGraph code is developed by JGraph Ltd. -->
@@ -48,7 +46,7 @@
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <mxgraph.version>4.0.6</mxgraph.version>
+    <mxgraph.version>4.2.2</mxgraph.version>
     <!-- The URL from where to download the mxGraph sources. -->
     <mxgraph.url>https://github.com/jgraph/mxgraph/archive/v${mxgraph.version}.zip</mxgraph.url>
     <!-- The path to the folder where we unpack the mxGraph sources. -->
@@ -82,18 +80,6 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>net.alchim31.maven</groupId>
-          <artifactId>yuicompressor-maven-plugin</artifactId>
-          <version>1.5.1</version>
-          <configuration>
-            <preProcessAggregates>true</preProcessAggregates>
-            <jswarn>false</jswarn>
-            <!-- The default suffix uses the dash as separator (-min) but we prefer the dot (.min) because it is
-              currently more widely used in the JavaScript world. -->
-            <suffix>.min</suffix>
-          </configuration>
-        </plugin>
-        <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <executions>
             <!-- Copy the mxGraph license. -->
@@ -118,6 +104,19 @@
             </execution>
           </executions>
         </plugin>
+        <plugin>
+          <groupId>com.github.blutorange</groupId>
+          <artifactId>closure-compiler-maven-plugin</artifactId>
+          <configuration>
+            <lineSeparator>\n</lineSeparator>
+            <!-- Skip these since it's not our code. -->
+            <closureStrictModeInput>false</closureStrictModeInput>
+            <closureEmitUseStrict>false</closureEmitUseStrict>
+            <closureWarningLevels>
+              <es5Strict>WARNING</es5Strict>
+            </closureWarningLevels>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -130,7 +129,7 @@
     <profile>
       <id>diagramly</id>
       <properties>
-        <diagramly.version>12_3_3</diagramly.version>
+        <diagramly.version>14_4_3</diagramly.version>
         <!-- The URL from where to download the diagramly sources. -->
         <mxgraph.url>https://github.com/jgraph/mxgraph2/archive/diagramly-${diagramly.version}.zip</mxgraph.url>
         <!-- The path to the folder where we unpack the diagramly sources. -->

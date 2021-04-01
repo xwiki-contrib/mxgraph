@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>mxgraph</artifactId>
-    <version>4.0.6_12.3.3-2-SNAPSHOT</version>
+    <version>4.2.2_14.4.3-SNAPSHOT</version>
   </parent>
   <packaging>jar</packaging>
   <artifactId>mxgraph-core</artifactId>
@@ -39,6 +39,9 @@
   <properties>
     <!-- This will appear in the generated copyright NOTICE file. -->
     <projectTimespan>2006-2020</projectTimespan>
+    <!-- This is not our code. -->
+    <xwiki.jacoco.skip>true</xwiki.jacoco.skip>
+    <xwiki.checkstyle.skip>true</xwiki.checkstyle.skip>
   </properties>
   <dependencies>
     <!-- Test dependencies -->

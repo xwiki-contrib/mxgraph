@@ -25,15 +25,13 @@
   <parent>
     <groupId>org.xwiki.contrib</groupId>
     <artifactId>mxgraph</artifactId>
-    <version>4.0.6_12.3.3-2-SNAPSHOT</version>
+    <version>4.2.2_14.4.3-SNAPSHOT</version>
   </parent>
-  <packaging>jar</packaging>
+  <packaging>webjar</packaging>
   <artifactId>mxgraph-editor</artifactId>
   <name>mxGraph Editor WebJar</name>
   <description>A WebJar that packages the standard mxGraph editor.</description>
   <properties>
-    <!-- Explicitely indicate it's a webjar -->
-    <xwiki.extension.jar.type>webjar</xwiki.extension.jar.type>
     <!-- No Java code here -->
     <xwiki.clirr.skip>true</xwiki.clirr.skip>
   </properties>
@@ -59,104 +57,12 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>com.google.code.maven-replacer-plugin</groupId>
-        <artifactId>replacer</artifactId>
-        <version>1.5.3</version>
-        <executions>
-          <execution>
-            <id>fix-invalid-javascript</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>replace</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <regex>false</regex>
-          <file>${mxgraph.path}/javascript/examples/grapheditor/www/js/Graph.js</file>
-          <replacements>
-            <replacement>
-              <!-- 'short' is a reserved keyword and using it as a function name prevents us from minifying the
-                JavaScript code. Fortunately it's an internal function so we can safely rename it (it's not a public
-                API). -->
-              <token> short(</token>
-              <value> shorten(</value>
-            </replacement>
-          </replacements>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>net.alchim31.maven</groupId>
-        <artifactId>yuicompressor-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <!-- Minify the mxgraph editor code before packing the jar. -->
-            <id>minify-mxgraph-editor-code</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>compress</goal>
-            </goals>
-            <configuration>
-              <sourceDirectory>${mxgraph.path}/javascript/examples/grapheditor/www</sourceDirectory>
-              <outputDirectory>${mxgraph.path}/javascript/examples/grapheditor/www</outputDirectory>
-              <excludes>
-                <exclude>**/*.css</exclude>
-                <exclude>**/*.min.js</exclude>
-              </excludes>
-              <aggregations>
-                <!-- Aggregate the mxGraph editor modules. -->
-                <aggregation>
-                  <insertNewLine>true</insertNewLine>
-                  <output>${mxgraph.path}/javascript/examples/grapheditor/www/mxGraphEditor.js</output>
-                  <includes>
-                    <include>js/**/*.js</include>
-                  </includes>
-                  <excludes>
-                    <exclude>js/Init.js</exclude>
-                  </excludes>
-                </aggregation>
-                <!-- Aggregate the mxGraph viewer modules. -->
-                <aggregation>
-                  <insertNewLine>true</insertNewLine>
-                  <output>${mxgraph.path}/javascript/examples/grapheditor/www/mxGraphViewer.js</output>
-                  <includes>
-                    <include>js/Graph.js</include>
-                    <include>js/Shapes.js</include>
-                    <include>js/Editor.js</include>
-                    <include>js/EditorUi.js</include>
-                    <include>js/Actions.js</include>
-                  </includes>
-                </aggregation>
-              </aggregations>
-            </configuration>
-          </execution>
-          <execution>
-            <!-- Minify the mxgraph editor style sheets before packing the jar. -->
-            <id>minify-mxgraph-editor-style</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>compress</goal>
-            </goals>
-            <configuration>
-              <sourceDirectory>${mxgraph.path}/javascript/examples/grapheditor/www</sourceDirectory>
-              <outputDirectory>${mxgraph.path}/javascript/examples/grapheditor/www</outputDirectory>
-              <excludes>
-                <exclude>**/*.js</exclude>
-              </excludes>
-              <!-- Overwrite the original version with the minified one because some of the style sheets are loaded
-                automatically by the JavaScript code so we shouldn't change their name. -->
-              <nosuffix>true</nosuffix>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
           <!-- Copy the mxGraph editor resources to the expected WebJar location. -->
           <execution>
             <id>copy-mxgraph-editor-resources</id>
-            <phase>prepare-package</phase>
+            <phase>process-resources</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
@@ -172,6 +78,64 @@
                 </resource>
               </resources>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.blutorange</groupId>
+        <artifactId>closure-compiler-maven-plugin</artifactId>
+        <executions>
+          <!-- Override the default WebJar JavaScript aggregation step. -->
+          <execution>
+            <id>default-minify-1</id>
+            <configuration>
+              <targetDir>${project.version}</targetDir>
+              <outputFilename>mxGraphEditor.min.js</outputFilename>
+              <includes>js/*.js</includes>
+              <excludes>
+                <exclude>js/Init.js</exclude>
+                <exclude>js/*.min.js</exclude>
+              </excludes>
+              <!-- Skip these since it's not our code. -->
+            </configuration>
+          </execution>
+          <execution>
+            <id>agregate-mxgraph-viewer</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>minify</goal>
+            </goals>
+            <configuration>
+              <baseSourceDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}</baseSourceDir>
+              <sourceDir>${project.version}/js</sourceDir>
+              <baseTargetDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}</baseTargetDir>
+              <targetDir>${project.version}</targetDir>
+              <skipMerge>false</skipMerge>
+              <!-- Include the polyfills in the aggregated JavaScript file. -->
+              <closureRewritePolyfills>true</closureRewritePolyfills>
+              <!-- There's no configuration option to keep the unminified aggregated file so we include its source
+                in the generated source map file.  -->
+              <closureIncludeSourcesContent>true</closureIncludeSourcesContent>
+              <outputFilename>mxGraphViewer.min.js</outputFilename>
+              <includes>
+                <include>Graph.js</include>
+                <include>Shapes.js</include>
+                <include>Editor.js</include>
+                <include>EditorUi.js</include>
+                <include>Actions.js</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.searls</groupId>
+        <artifactId>jasmine-maven-plugin</artifactId>
+        <!-- Skip the execution of the Jasmine tests. -->
+        <executions>
+          <execution>
+            <id>default-test</id>
+            <phase>none</phase>
           </execution>
         </executions>
       </plugin>
