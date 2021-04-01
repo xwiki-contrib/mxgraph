@@ -79,7 +79,6 @@
             <configuration>
               <targetDir>${project.version}</targetDir>
               <outputFilename>mxClient.bundle.min.js</outputFilename>
-              <lineSeparator>\n</lineSeparator>
               <includes>
                 <include>js/mxClient.js</include>
                 <include>js/util/mxLog.js</include>
@@ -223,12 +222,6 @@
                 <include>js/io/mxDefaultPopupMenuCodec.js</include>
                 <include>js/io/mxEditorCodec.js</include>
               </includes>
-              <!-- Skip these since it's not our code. -->
-              <closureStrictModeInput>false</closureStrictModeInput>
-              <closureEmitUseStrict>false</closureEmitUseStrict>
-              <closureWarningLevels>
-                <es5Strict>WARNING</es5Strict>
-              </closureWarningLevels>
             </configuration>
           </execution>
         </executions>

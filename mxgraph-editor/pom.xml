@@ -91,18 +91,12 @@
             <configuration>
               <targetDir>${project.version}</targetDir>
               <outputFilename>mxGraphEditor.min.js</outputFilename>
-              <lineSeparator>\n</lineSeparator>
               <includes>js/*.js</includes>
               <excludes>
                 <exclude>js/Init.js</exclude>
                 <exclude>js/*.min.js</exclude>
               </excludes>
               <!-- Skip these since it's not our code. -->
-              <closureStrictModeInput>false</closureStrictModeInput>
-              <closureEmitUseStrict>false</closureEmitUseStrict>
-              <closureWarningLevels>
-                <es5Strict>WARNING</es5Strict>
-              </closureWarningLevels>
             </configuration>
           </execution>
           <execution>
@@ -123,7 +117,6 @@
                 in the generated source map file.  -->
               <closureIncludeSourcesContent>true</closureIncludeSourcesContent>
               <outputFilename>mxGraphViewer.min.js</outputFilename>
-              <lineSeparator>\n</lineSeparator>
               <includes>
                 <include>Graph.js</include>
                 <include>Shapes.js</include>
@@ -131,12 +124,6 @@
                 <include>EditorUi.js</include>
                 <include>Actions.js</include>
               </includes>
-              <!-- Skip these since it's not our code. -->
-              <closureStrictModeInput>false</closureStrictModeInput>
-              <closureEmitUseStrict>false</closureEmitUseStrict>
-              <closureWarningLevels>
-                <es5Strict>WARNING</es5Strict>
-              </closureWarningLevels>
             </configuration>
           </execution>
         </executions>
