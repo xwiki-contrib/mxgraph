@@ -30,7 +30,7 @@
   <artifactId>mxgraph</artifactId>
   <packaging>pom</packaging>
   <name>mxGraph Parent POM</name>
-  <version>4.2.2_14.4.3-1-SNAPSHOT</version>
+  <version>4.2.2_20.5.0-SNAPSHOT</version>
   <description>Provides packaging for the mxGraph diagramming library.</description>
   <developers>
     <!-- Only for the packaging. The mxGraph code is developed by JGraph Ltd. -->
@@ -129,7 +129,7 @@
     <profile>
       <id>diagramly</id>
       <properties>
-        <diagramly.version>14_4_3</diagramly.version>
+        <diagramly.version>20_5_0</diagramly.version>
         <!-- The URL from where to download the diagramly sources. -->
         <mxgraph.url>https://github.com/jgraph/mxgraph2/archive/diagramly-${diagramly.version}.zip</mxgraph.url>
         <!-- The path to the folder where we unpack the diagramly sources. -->
